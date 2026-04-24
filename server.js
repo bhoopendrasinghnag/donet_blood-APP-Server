@@ -1,0 +1,41 @@
+import express from 'express'
+import compression from "compression";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+import { connectToDatabase } from "./db.js";
+import authRouter from "./routes/authRoutes.js"
+
+const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(cors({
+  origin: '*',
+  exposedHeaders: ["Authorization", "RefreshToken"],
+  credentials: true,
+}));
+app.use(express.json({ limit: "20mb" }));
+
+app.use(compression());
+
+app.use("/api/auth", authRouter);
+
+app.use(express.static(path.join(__dirname, "../blood_donation_app/build")));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../blood_donation_app/build/index.html"));
+});
+
+connectToDatabase();
+
+app.listen(process.env.PORT, "0.0.0.0", () => {
+  console.log(`Server running on ${process.env.PORT} 🚀`);
+});
+
+
+
+
+
+
