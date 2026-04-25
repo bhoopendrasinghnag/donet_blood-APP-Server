@@ -1,6 +1,7 @@
 import logInUserService from "../service/logInService.js";
 
 const logInUser = async (req, res) => {
+  console.log("Here")
   try {
 
     const result = await logInUserService(req.body);
