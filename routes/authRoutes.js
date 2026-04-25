@@ -14,6 +14,7 @@ import heroesController from "../service/controllers/getHeroesController.js";
 import getLastDonationController from "../service/controllers/getLastDonationController.js"
 import donationFormController from "../service/controllers/donationFormController.js"
 import getDonores from "../service/controllers/getDonoresController.js"
+import getActiveRequestController from "../service/controllers/getActiveRequestController.js";
 
 // import donationState from "../service/controllers/stateController.js"
 const router = express.Router();
@@ -36,7 +37,9 @@ router.get("/lastDonation/:id", getLastDonationController);
 
 router.post("/donation-form", donationFormController)
 
-router .get("/get-donor", getDonores)
+router.get("/activeRequests", authMiddleware, getActiveRequestController);
+
+router.get("/get-donor", getDonores)
 
 
 import donations from "../service/DonationManually.js";
