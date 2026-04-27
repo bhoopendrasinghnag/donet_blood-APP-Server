@@ -3,9 +3,10 @@ import getActiveRequestRepository from "../reposetory/getActiveRequestRepository
 const getActiveRequestService = async (token) => {
     const pureToken = token.split(" ")[1];
     const decoded = jwt.verify(pureToken, process.env.JWT_SECRET);
-    console.log(decoded);
 
     const userId = decoded.id;
+    console.log(userId);
+
     // const loc = decoded.
     return await getActiveRequestRepository(userId);
 }
