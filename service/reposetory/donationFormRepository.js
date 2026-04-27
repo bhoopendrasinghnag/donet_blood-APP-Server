@@ -1,13 +1,12 @@
 import dotenv from "dotenv";
-import nodemailer from "nodemailer";   // ✅ FIX 1: import added
+import nodemailer from "nodemailer";
 import { getDB } from "../../db.js";
 
 dotenv.config();
-const collection = process.env.DONATIONFORM_COLLECTION;
 
 const saveDonationForm = async (formData) => {
     const db = await getDB();
-    const response = await db.collection(collection).insertOne(formData);
+    const response = await db.collection(DONATIONFORM_COLLECTION).insertOne(formData);
 
     const email = formData.email;
 
@@ -64,7 +63,6 @@ const saveDonationForm = async (formData) => {
         });
     };
 
-    // ✅ FIX 2: actually call function
     await sendConfirmationEmail(email);
 
     return {
