@@ -6,7 +6,7 @@ dotenv.config();
 
 const saveDonationForm = async (formData) => {
     const db = await getDB();
-    const response = await db.collection(DONATIONFORM_COLLECTION).insertOne(formData);
+    const response = await db.collection(process.env.DONATIONFORM_COLLECTION).insertOne(formData);
 
     const email = formData.email;
 
