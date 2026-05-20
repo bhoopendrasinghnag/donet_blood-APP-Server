@@ -8,6 +8,8 @@ const saveDonationForm = async (formData) => {
     const db = await getDB();
     const response = await db.collection(process.env.DONATIONFORM_COLLECTION).insertOne(formData);
 
+    console.log(response);
+    
     const email = formData.email;
 
     const sendConfirmationEmail = async (email) => {
@@ -18,6 +20,8 @@ const saveDonationForm = async (formData) => {
                 pass: process.env.EMAIL_PASS,
             },
         });
+        console.log("send to email" );
+        
 
         await transporter.sendMail({
             from: `"Blood Donation App ❤️" <${process.env.EMAIL_USER}>`,
