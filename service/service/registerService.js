@@ -25,6 +25,9 @@ const registerUserService = async (data) => {
     { expiresIn: "5m" }
   );
 
+  console.log(token);
+  
+
   await registerRepository.otpSender(data.email, otp);
 
   return {

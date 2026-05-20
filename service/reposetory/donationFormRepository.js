@@ -22,7 +22,7 @@ const saveDonationForm = async (formData) => {
         });
         console.log(email);
 
-
+        await transporter.verify();
         await transporter.sendMail({
             from: `"Blood Donation App ❤️" <${process.env.EMAIL_USER}>`,
             to: email,

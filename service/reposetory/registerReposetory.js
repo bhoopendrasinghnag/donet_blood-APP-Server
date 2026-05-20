@@ -13,15 +13,42 @@ const findUserByEmail = async (email) => {
   return await db.collection(collection).findOne({ email });
 };
 
+
+
 // ================= SEND OTP EMAIL =================
-const otpSender = async (email, otp) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+try {
+
+  const user =
+    process.env.EMAIL_USER;
+
+  const pass =
+    process.env.EMAIL_PASS;
+
+  console.log(user);
+
+  const transporter =
+    nodemailer.createTransport({
+
+      host: "smtp.gmail.com",
+
+      port: 465,
+
+      secure: true,
+
+      auth: {
+        user,
+        pass,
+      },
+
+      logger: true,
+      debug: true,
+
+      connectionTimeout: 10000,
+
+      greetingTimeout: 10000,
+
+      socketTimeout: 10000,
+    });
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
@@ -32,8 +59,19 @@ const otpSender = async (email, otp) => {
       <h3>Your OTP is: ${otp}</h3>
       <p>This OTP is valid for 5 minutes.</p>
     `,
-  });
-};
+  })
+}
+catch (err) {
+
+  console.log(
+    "MAIL ERROR ❌"
+  );
+
+  console.log(err);
+
+  throw err;
+}
+
 
 // ================= CREATE USER =================
 const createUser = async (userData) => {
