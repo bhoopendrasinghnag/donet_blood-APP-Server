@@ -1,6 +1,8 @@
 import forgotService from "../service/forgotService.js";
 
 const updatePasswordController = async (req, res) => {
+  console.log(req.body);
+  
   try {
     const result = await forgotService.updatePasswordService(req.body);
 

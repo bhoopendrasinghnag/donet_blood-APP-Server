@@ -25,7 +25,7 @@ router.post("/saveUser", registerUser.createUser)
 router.post("/logIn", logInUser);
 router.post("/send-otp", sendOtpController);
 router.post("/verify-forget-otp", verifyOtpController);
-// router.post("/reset-password", updatePasswordController);
+router.post("/reset-password", updatePasswordController);
 
 router.get("/pincode/:pin", recivePincodeController.pincode);
 router.get("/verify-phone/:phone", verifyPhoneNumberController);

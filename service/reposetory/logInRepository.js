@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 dotenv.config();
 
 const findUserByEmail = async (data) => {
-  
+
   const email = data.email;
 
   const db = await getDB();
@@ -35,7 +35,7 @@ const findUserByEmail = async (data) => {
   const token = jwt.sign(
     { id: existingUser._id, email: existingUser.email },
     process.env.JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: process.env.JWT_SECRET_EXPIRESTIME }
   );
 
   return {
