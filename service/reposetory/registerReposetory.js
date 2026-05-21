@@ -16,61 +16,64 @@ const findUserByEmail = async (email) => {
 
 
 // ================= SEND OTP EMAIL =================
-try {
+const otpSender =
+  async (email, otp) => {
+    try {
 
-  const user =
-    process.env.EMAIL_USER;
+      const user =
+        process.env.EMAIL_USER;
 
-  const pass =
-    process.env.EMAIL_PASS;
+      const pass =
+        process.env.EMAIL_PASS;
 
-  console.log(user);
+      console.log(user);
 
-  const transporter =
-    nodemailer.createTransport({
+      const transporter =
+        nodemailer.createTransport({
 
-      host: "smtp.gmail.com",
+          host: "smtp.gmail.com",
 
-      port: 465,
+          port: 465,
 
-      secure: true,
+          secure: true,
 
-      auth: {
-        user,
-        pass,
-      },
+          auth: {
+            user,
+            pass,
+          },
 
-      logger: true,
-      debug: true,
+          logger: true,
+          debug: true,
 
-      connectionTimeout: 10000,
+          connectionTimeout: 10000,
 
-      greetingTimeout: 10000,
+          greetingTimeout: 10000,
 
-      socketTimeout: 10000,
-    });
+          socketTimeout: 10000,
+        });
 
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "OTP for Blood Donation Registration",
-    html: `
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "OTP for Blood Donation Registration",
+        html: `
       <h2>Blood Donation App</h2>
       <h3>Your OTP is: ${otp}</h3>
       <p>This OTP is valid for 5 minutes.</p>
     `,
-  })
-}
-catch (err) {
+      })
+    }
+    catch (err) {
 
-  console.log(
-    "MAIL ERROR ❌"
-  );
+      console.log(
+        "MAIL ERROR ❌"
+      );
 
-  console.log(err);
+      console.log(err);
 
-  throw err;
-}
+      throw err;
+    }
+  }
 
 
 // ================= CREATE USER =================
