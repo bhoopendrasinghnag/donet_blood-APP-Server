@@ -23,10 +23,8 @@ app.use(compression());
 
 app.use("/api/auth", authRouter);
 
-app.use(express.static(path.join(__dirname, "../blood_donation_app/build")));
-
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../blood_donation_app/build/index.html"));
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "Backend Running 🚀" });
 });
 
 connectToDatabase();
