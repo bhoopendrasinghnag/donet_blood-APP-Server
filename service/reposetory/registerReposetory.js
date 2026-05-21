@@ -33,27 +33,34 @@ const otpSender =
 
           host: "smtp.gmail.com",
 
-          port: 587,
+          port: 465,
 
-          secure: false,
-
-          requireTLS: true,
+          secure: true,
 
           family: 4,
 
           auth: {
-            user,
-            pass,
+
+            user:
+              process.env.EMAIL_USER,
+
+            pass:
+              process.env.EMAIL_PASS,
+          },
+
+          tls: {
+            rejectUnauthorized: false
           },
 
           logger: true,
+
           debug: true,
 
-          connectionTimeout: 10000,
+          connectionTimeout: 30000,
 
-          greetingTimeout: 10000,
+          greetingTimeout: 30000,
 
-          socketTimeout: 10000,
+          socketTimeout: 30000,
         });
 
       await transporter.sendMail({
