@@ -5,12 +5,11 @@ import createUserRepository from "../reposetory/registerReposetory.js"
 const registerUser = async (req, res) => {
   try {
     const result = await registerUserService(req.body);
-
-
-    if (result.success == true)
-       res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (error) {
-    res.status(400).json(result);
+    console.log("REGISTER ERROR ❌");
+    console.log(error);
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 
