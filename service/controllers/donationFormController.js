@@ -2,8 +2,6 @@ import donationFormService from "../service/donationFormService.js";
 
 const donationFormController = async (req, res) => {
     try {
-        console.log("DonationForm");
-
         const result = await donationFormService(req.body);
 
         if (result?.success) {

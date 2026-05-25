@@ -1,7 +1,6 @@
 import { getDB } from "../../db.js";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
-// import nodemailer from "nodemailer";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
 
@@ -20,31 +19,6 @@ const findUserByEmail = async (email) => {
   const db = await getDB();
   return await db.collection(collection).findOne({ email });
 };
-
-// ================= SEND OTP EMAIL =================
-// const otpSender = async (email, otp) => {
-//   const transporter = nodemailer.createTransport({
-//     host: "smtp.gmail.com",
-//     port: 465,
-//     secure: true,
-//     family: 4,
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_PASS,
-//     },
-//   });
-
-//   await transporter.sendMail({
-//     from: process.env.EMAIL_USER,
-//     to: email,
-//     subject: "OTP for Blood Donation Registration",
-//     html: `
-//       <h2>Blood Donation App</h2>
-//       <h3>Your OTP is: ${otp}</h3>
-//       <p>This OTP is valid for 5 minutes.</p>
-//     `,
-//   });
-// };
 
 const otpSender =
   async (email, otp) => {
