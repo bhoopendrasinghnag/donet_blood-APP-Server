@@ -2,7 +2,6 @@ import { getDB } from "../../db.js";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 // import nodemailer from "nodemailer";
-
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
 
