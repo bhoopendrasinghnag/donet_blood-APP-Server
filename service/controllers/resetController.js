@@ -4,7 +4,7 @@ const updatePasswordController = async (req, res) => {
 
 
   try {
-    const result = await forgotService.updatePasswordService(req.body);F
+    const result = await forgotService.updatePasswordService(req.body);
 
     return res.status(200).json({
       success: true,
