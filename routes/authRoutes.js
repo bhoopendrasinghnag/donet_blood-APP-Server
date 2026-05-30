@@ -7,6 +7,7 @@ import logInUser from "../service/controllers/logInControllers.js";
 import sendOtpController from "../service/controllers/sendOtpController.js";
 import verifyOtpController from "../service/controllers/verifyOTPController.js";
 import updatePasswordController from "../service/controllers/resetController.js";
+import changePasswordController from "../service/controllers/changePasswordController.js"
 import recivePincodeController from "../service/controllers/recivePincodeController.js"
 import verifyPhoneNumberController from "../service/controllers/verifyPhoneNumberController.js"
 import getDonationController from "../service/controllers/getDonationListController.js"
@@ -26,6 +27,8 @@ router.post("/logIn", logInUser);
 router.post("/send-otp", sendOtpController);
 router.post("/verify-forget-otp", verifyOtpController);
 router.post("/reset-password", updatePasswordController);
+
+router.post("/update-password", changePasswordController);
 
 router.get("/pincode/:pin", recivePincodeController.pincode);
 router.get("/verify-phone/:phone", verifyPhoneNumberController);
