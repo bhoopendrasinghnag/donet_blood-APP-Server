@@ -5,10 +5,11 @@ const updatePasswordController = async (req, res) => {
 
   try {
     const result = await forgotService.updatePasswordService(req.body);
+console.log(result);
 
     return res.status(200).json({
       success: true,
-      message: result.message,
+      message: result.otp,
     });
 
   } catch (error) {

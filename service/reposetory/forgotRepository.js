@@ -15,7 +15,6 @@ const findUserByEmail = async (email) => {
 
 const otpSender =
   async (email, otp) => {
-    console.log(email, otp);
 
     try {
       const response = await apiInstance.sendTransacEmail({
@@ -34,8 +33,13 @@ const otpSender =
             `
       });
 
+      const data = {
+        status: true,
+        otp: otp
+      }
+      
       console.log("MAIL SENT ✅");
-      return true;
+      return data;
 
     } catch (err) {
 
